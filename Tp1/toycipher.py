@@ -44,17 +44,86 @@ def list_of_pairs(key, n):
 	pairs = {}
 	for i in range(0, n):
 		msg = (random.randint(0, 15))
-		pairs[msg] = enc(msg,key)
+		pairs[i] = (msg, enc(msg,key))
 	return pairs
 
+# Génère les masks
+def generate_masks():
+	mask_in = []
+	for i in range(0, 16):
+		mask_in.append(i)
+	mask_out = mask_in
+	return mask_in, mask_out
+
+# EX3.2 - calcule pour les couples(maski, masko)
+def pair_masks(mask_in, mask_out):
+	pair_mask = {}
+	k = 0
+	for i in range(0,16):
+		for j in range(0,16):
+			pair_mask[k] = (mask_in[j], mask_out[i])
+			k = k+1
+	return pair_mask
+
+# EX3.3 - trouve la meilleure paire
+def parite(key, pair_mask):
+	res = []
+	for i in pair_mask:
+		res.append(0)
+		for j in range(0,16):
+			mask = pair_mask[i]
+			res_in = bin(j & mask[0]).count('1')
+			res_out = bin(sbox[j] & mask[1]).count('1')
+			if res_in %2 == res_out %2:
+				res[i] = res[i] +1
+	return res
+
+# EX3.3 - trouve la meilleure paire
+def best_mask(res):
+	tmp = 0
+	ret = []
+	for i in range(1,len(res)):
+		if res[i] > tmp:
+			tmp = res[i]
+			ret.clear()
+			ret.append(i)
+		elif res[i] == tmp:
+			ret.append(i)
+	return ret
+
 if __name__ == '__main__':
+	# Generate random key
 	key = (random.randint(0, 15), random.randint(0, 15))
+	# Generate message
 	msg = 3
+	# Generate encrypted message
 	sortie = enc(msg,key)
+	
 	nbtour = 0
+
 	#find_key(key, msg, sortie)
-	pairs = list_of_pairs(key, 10)
+
+	# Generate pairs
+	pairs = list_of_pairs(key, 16)
 	print(pairs)
+	
+	# Generate masks
+	mask_in, mask_out = generate_masks()
+	les_pairs = pair_masks(mask_in, mask_out)
+	#print(les_pairs)
+
+	# Parite
+	res = parite(key, les_pairs)
+	print(res)
+
+	# Best pair
+	res2 = best_mask(res)
+	print(res2)
+	print("Les best mask pour une parité sont: ")
+	for i in res2:
+		tmp = les_pairs[i]
+		print(tmp)
+
 	#print(nbtour)
 	
 	

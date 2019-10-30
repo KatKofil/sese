@@ -41,3 +41,9 @@ Nous remarquons que la méthode brute force fonctionne mais que le nombre de col
 ### 5c)
 
 Notre première hypothèse est réfuté car le nombre de colision étant important on ne peut que réduire le nombre de clef possible. Et pas trouver la bonne. En seulement 512 itération.
+
+## Exercice 3
+
+### 1
+
+La fonction de tour n'est pas lineaire du fait de la présnece d'une boite de supstitution dont la fonction est justement de casser la linéarité du cryptosystème.
