@@ -91,6 +91,11 @@ def best_mask(res):
 			ret.append(i)
 	return ret
 
+def saucisse(pairs, best_mask):
+	for k in range(0,15):
+		for m in pairs:
+		pairs[i] # A COMPLETER ...
+
 if __name__ == '__main__':
 	# Generate random key
 	key = (random.randint(0, 15), random.randint(0, 15))
@@ -103,7 +108,7 @@ if __name__ == '__main__':
 
 	#find_key(key, msg, sortie)
 
-	# Generate pairs
+	# EX4.1 - Generate pairs
 	pairs = list_of_pairs(key, 16)
 	print(pairs)
 	
