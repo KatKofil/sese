@@ -1,8 +1,3 @@
-Nom : Ayadi
-Prénoms : Emna
-N°étudiant : 16700056
-
-
 Exercice 1:
 
 Voir fichier "RSA.py"

@@ -1,4 +1,3 @@
-#Ayadi Emna 16700056 Exercice 3
 def egcd(a, b):
     if a == 0:
         return (b, 0, 1)

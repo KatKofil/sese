@@ -1,6 +1,3 @@
-#Ayadi Emna 16700056 Exercice 1
-
-
 import random
 import time 
 
