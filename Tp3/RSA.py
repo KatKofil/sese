@@ -1,7 +1,6 @@
 import random
 import time 
 
-
 def egcd(a, b):
     if a == 0:
         return (b, 0, 1)
@@ -9,62 +8,46 @@ def egcd(a, b):
         g, y, x = egcd(b % a, a)
         return (g, x - (b // a) * y, y)
 
-def modinv(a, modulo):
-    g, x, y = egcd(a, modulo)
+def modinv(a, m):
+    g, x, y = egcd(a, m)
     if g != 1:
         raise Exception('modular inverse does not exist')
     else:
-        return x % modulo
+        return x % m
 
-def modexp (base, puissance, modulo):
+def modexp (b, e, m):
 	res = 1
-	base = base % modulo
-	while puissance != 0:
-		if puissance & 1 == 1:
-			res = (res * base) % modulo
-		base = (base * base) % modulo
-		puissance >>= 1
+	b = b % m
+	while e != 0:
+		if e & 1 == 1:
+			res = (res * b) % m
+		b = (b * b) % m
+		e >>= 1
 	return res
 
+if __name__ == '__main__':
 
+	q = 153913992087337632323856325535167134698095080265487697782446283149626790922054338896603372601701248192800221006576347314040816659302976199762035470757122629463456678269133200480357169321736362760934788789190740182901256963860061869620481609960370510030714750089180702939732729221296257214940229289705438006879
+	p = 158830509839483660538353412378447400700107210968900092239591179911128667705234925924251344045049717336769031554144041134728268846983368928546770796843344423778338023815172845840730580759322444317036651307764297790101711811434976591831902924379463292108663467379931846166559498777380964112289086944467540107473
+	𝑒 = 65537
+	n = p * q
 
-p = 178655983816562256022408092633422595713229107114519518605896607081251752416328869605529671823778041606438375282652300454455710405067116463343031940742450604977296076806651049403592029426173609044020114342966120917054579340511624555884118062875992540479181371532898389769308203352500335383970181386455599273743
-q = 176971306794047764150323685671937496182886713210614637864922648834239445521454421085736049372770691546509598662869330547799522521030080715949305569792630508260506069671578338543338755329805493383257333284700846667530105830998001733633149574832756755997234103673286233544270901824671021881678072519234331575963
-𝑒 = 65537
-n = p * q
+	phi_n = (p - 1) * (q - 1)
+	d = modinv(e,phi_n)
+	i = 0
+	message = random.getrandbits(2048)
+	print("message: ",message)
 
-def chiffre(message, cledechiffrement):
-        return modexp(message, cledechiffrement, n)
+	start_t = time.time()
+	while(i != 100):
 
-def dechiffre(secret, clededechiffrement):
-        return modexp(secret, clededechiffrement, n)
+		mc = modexp(message, d, n)
+		print("Le message chiffre est: ",mc)
+		i +=1
 
+	end_t = time.time()
+	total = end_t - start_t
+	print("temp = ",total)
 
-phi_n = (p - 1) * (q - 1)
-d = modinv(e,phi_n)
-i = 0
-message = random.getrandbits(2048)
-print("message: ",message)
-print("\n")
-
-start_t = time.time()	
-while(i != 100):
-
-	message_chiffre = chiffre(message,d)
-	print("Message chiffre: ",message_chiffre)
-	print("\n")
-	i +=1
-
-end_t = time.time()
-total = end_t - start_t
-print("temp = ",total)
-print("\n")
-
-message_dechiffre = dechiffre(message_chiffre,e)
-print("Message dechiffre: ",message_dechiffre)
-print("\n")
-
-
-
-
-
+	md = modexp(mc, e, n)
+	print("Le message dechiffre est : ",md)
