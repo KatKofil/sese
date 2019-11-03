@@ -40,77 +40,52 @@ On remarque que c'est plus rapide.
 
 ## Exercice 3
 
-Voir le fichier "fault.py"
+Voir le fichier "faute.py"
 
 ### 3a)
 
-s_officiel = 3f010be37eb5eca9
+s = 3f010be37eb5eca9
 
-Resultat de tentative :
+1:
 
--n°1(fault register):
+^C
+> Inject fault? (r = fault register, s = skip instruction, q = quit) s
+> How many instruction to skip? 3
+! 3 instructions skipped
+> Resuming…
+s = 3679cd83dcb89cea
 
-sese_seance-8_files python3 bench.py -i crtrsa.asm /dev/null
+2:
+
 ^C
 > Inject fault? (r = fault register, s = skip instruction, q = quit) r
-> Which register? (0-32) 15
+> Which register? (0-32) 23
+> Zero or random? (z = zero, r = random) r
+! r23 randomized
+> Resuming…
+
+s = 3f010be37eb5eca9 la clef est identique faute non valide
+
+3:
+
+^C
+> Inject fault? (r = fault register, s = skip instruction, q = quit) r
+> Which register? (0-32) 4
+> Zero or random? (z = zero, r = random) z
+! r4 zeroized
+> Resuming…
+Invalid address -1 on line 186 of file bignum.asm
+
+La faute casse le résultat
+
+4:
+
+^C
+> Inject fault? (r = fault register, s = skip instruction, q = quit) r
+> Which register? (0-32) 15  
 > Zero or random? (z = zero, r = random) z
 ! r15 zeroized
 > Resuming…
 s = 7323fd5ef5440fbc
 
-On remarque que s est different de s_officiel
-
--n°2 (skip intruction):
-
-sese_seance-8_files python3 bench.py -i crtrsa.asm /dev/null
-^C
-> Inject fault? (r = fault register, s = skip instruction, q = quit) s
-> How many instruction to skip? 5
-! 5 instructions skipped
-> Resuming…
-s = 0121d5c451165763f6
-
-On remarque que s est different de s_officiel
-
--n°3 (skip intruction):
-
-sese_seance-8_files python3 bench.py -i crtrsa.asm /dev/null
-^C
-> Inject fault? (r = fault register, s = skip instruction, q = quit) s
-> How many instruction to skip? 10
-! 10 instructions skipped
-> Resuming…
-s = 0282607951f32dbaf5
-
--n°4 (skip intruction):
-
-sese_seance-8_files python3 bench.py -i crtrsa.asm /dev/null
-^C
-> Inject fault? (r = fault register, s = skip instruction, q = quit) s
-> How many instruction to skip? 20
-! 20 instructions skipped
-> Resuming…
-s = 01b0256b94c0806e2a
-
--n°5(fault register):
-
-sese_seance-8_files python3 bench.py -i crtrsa.asm /dev/null
-^C
-> Inject fault? (r = fault register, s = skip instruction, q = quit) r
-> Which register? (0-32) 20
-> Zero or random? (z = zero, r = random) r
-! r20 randomized
-> Resuming…
-s = 55056dfd0def8003
-
--n°6(fault register):
-
-sese_seance-8_files python3 bench.py -i crtrsa.asm /dev/null
-^C
-> Inject fault? (r = fault register, s = skip instruction, q = quit) r
-> Which register? (0-32) 25
-> Zero or random? (z = zero, r = random) z
-! r25 zeroized
-> Resuming…
-s = 944eda97805656ee
+La faute est valide
