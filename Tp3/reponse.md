@@ -34,7 +34,7 @@ Les valeurs nécessaires dans la clef privée est : 𝑝, 𝑞, 𝑑𝑝, 𝑑�
 
 ### 2f)
 
-Temps = 7.5287909507751465 (avec le fichier "RSA_best.py")
+Temps = 7.5287909507751465 (avec le fichier "crt-rsa.py")
 
 On remarque que c'est plus rapide.
 
