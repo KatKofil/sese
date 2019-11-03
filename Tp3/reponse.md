@@ -22,7 +22,7 @@ Voir le fichier "RSA_best.py"
 
 ### 2a)
 
-Temp =   3.698162317276001 (test effectué avec le fichier "RSA.py")
+Temp =   25.124674081802368 (test effectué avec le fichier "RSA.py")
 
 ### 2b)
 
@@ -34,7 +34,7 @@ Les valeurs nécessaires dans la clef privée est : 𝑝, 𝑞, 𝑑𝑝, 𝑑�
 
 ### 2f)
 
-Temps = 1.1502900123596191 (avec le fichier "RSA_best.py")
+Temps = 7.5287909507751465 (avec le fichier "RSA_best.py")
 
 On remarque que c'est plus rapide.
 
