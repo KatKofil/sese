@@ -50,7 +50,7 @@ La fonction de tour n'est pas lineaire du fait de la présnece d'une boite de su
 
 ## Exercice 4
 
-### 2
+### 4b)
 
 génération de paire plaintext et encodé (fonction précédente) (msg , enc) * 16
     for msg in list
@@ -62,11 +62,30 @@ Après avoir généré tout les message intermediaire on passe le masque in sur 
 
 On compare la parité des sortie. Si la parité est la même que celle trouver dans l'analyse de la sbox ou l'inverce (ici la parité devrais etre egale a 14-2 ou 2-14) On peu en conclure que la clef utilisé pour encodé t est une candidate pour k0.
 
-### Exercice 5
+## Exercice 5
 
-On peut alors après étant en possétion de la quantidate pour k0 trouvé k1.
+### 5a)
+
+On peut alors, étant en possétion des quantidats pour k0 trouvé k1.
 On peut pour cela suprimé la sbox avec soint inverse.
-et rféduire l'équation de c = sbox[xor t k1] à xobs[c] = xor k1 t
- puis à k1 = xobs[c] "?" t
+et réduire l'équation de c = sbox[xor t k1] à xobs[c] = xor k1 t
+puis à k1 = xobs[c] ^ t
 
+## Exercice 6
+
+### 6a)
+
+On peut donc voire que l'attack par cryptanalyse lineaire consome 800 étape alors que le brute force consommais 8192 étapes.
+
+### 6b)
+
+On peut donc en conclure que l'analyse linéaire consome 10 fois moin d'étape qu'un simple brute force.
+
+### 6c)
+
+Elles ne doivent pas être contée car elles peuvent être éffectué en amont de l'attaque.
+
+### 6d)
+
+La Sbox Présent est plus efficace que la sbox étudier dans ce tp car elle limite la parrité utilisé pour trouver les potentiel k0. La consommation d'étape est donc plus importante car cela multipli les masque a testé.
 
